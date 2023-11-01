@@ -4,6 +4,8 @@ import lesson_33._04_stream_usage.model.Chicken;
 import lesson_33._04_stream_usage.model.ChickenComparator;
 import lesson_33._04_stream_usage.model.Dog;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.List;
 import java.util.stream.Stream;
 

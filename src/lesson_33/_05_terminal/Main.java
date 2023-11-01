@@ -19,7 +19,7 @@ public class Main {
                 new PricedCat("Cat1", 5, 500),
                 new PricedCat("Cat2", 3, 400),
                 new PricedCat("Cat3", 3, 600),
-                new PricedCat("Cat4", 1, 800),
+                new PricedCat("Cat2", 1, 800),
                 new PricedCat("Cat5", 4, 650)
         );
 
@@ -56,14 +56,20 @@ public class Main {
 
         System.out.println("______________________________");
 
-        cats.stream()
-                .collect(Collectors.toMap(k -> k.getName(), v -> v))
-                .forEach((k,v) -> System.out.println(k + " - " + v));
+//        cats.stream()
+//                .collect(Collectors.toMap(k -> k.getName(), v -> v))
+//                .forEach((k,v) -> System.out.println(k + " - " + v));
 
         System.out.println("______________________________");
 
         LinkedList<PricedCat> collect = cats.stream()
                 .collect(Collectors.toCollection(LinkedList::new));
+
+        System.out.println("______________________________");
+
+        cats.stream()
+                .collect(Collectors.toMap(k -> k.getName(), v -> v, (oldValue, newValue) -> newValue, HashMap::new))
+                .forEach((k,v) -> System.out.println(k + " - " + v));
 
     }
 
@@ -119,12 +125,17 @@ public class Main {
 
             PricedCat pricedCat = (PricedCat) o;
 
-            return age == pricedCat.age;
+            if (age != pricedCat.age) return false;
+            if (price != pricedCat.price) return false;
+            return name != null ? name.equals(pricedCat.name) : pricedCat.name == null;
         }
 
         @Override
         public int hashCode() {
-            return age;
+            int result = name != null ? name.hashCode() : 0;
+            result = 31 * result + age;
+            result = 31 * result + price;
+            return result;
         }
     }
 }

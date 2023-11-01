@@ -1,0 +1,11 @@
+<?xml version="1.0" encodin="utf-8" ?>
+<cats>
+    <cat id="1">
+        <name>Barsik</name>
+        <age>2</age>
+    </cat>
+    <cat id="2">
+        <age>Tuzik</age>
+    </cat>
+    <cat id="1" name="Barsik" age="2"/>
+</cats>
